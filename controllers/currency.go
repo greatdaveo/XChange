@@ -31,7 +31,7 @@ func ConvertCurrency(service *services.RateService) http.HandlerFunc {
 
 		// To get real exchange rate from the RateService
 		rate, err := service.GetRate(from, to)
-		fmt.Printf("✅ Received rate: %f\n", rate)
+		// fmt.Printf("✅ Received rate: %f\n", rate)
 		if err != nil || rate <= 0 {
 			fmt.Println(err)
 			http.Error(w, "❌ Unable to convert currency", http.StatusInternalServerError)

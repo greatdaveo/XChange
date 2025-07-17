@@ -8,10 +8,10 @@ import (
 
 // To hold one or more rate providers
 type RateService struct {
-	Providers []rates.RateProviders
+	Providers []rates.RateProvider
 }
 
-func NewRateService(providers []rates.RateProviders) *RateService {
+func NewRateService(providers []rates.RateProvider) *RateService {
 	return &RateService{Providers: providers}
 }
 

@@ -15,15 +15,22 @@ import (
 func main() {
 	godotenv.Load(".env")
 	apiKey := os.Getenv("EXCHANGE_RATE_API_KEY")
+	currencyLayerKey := os.Getenv("CURRENCY_LAYER_API_KEY")
 
-	// To initialize the rate provider
-	externalAPI := &rates.RateProviders{APIKey: apiKey}
-	// To pass it to the RateService
-	rateService := services.NewRateService([]rates.RateProviders{*externalAPI})
-	// To inject RateService into controller
+	externalAPI := &rates.ExchangeRateAPI{
+		APIKey: apiKey,
+	}
+	frankfurterAPI := &rates.CurrencyLayerAPI{
+		APIKey: currencyLayerKey,
+	}
+
+	// ✅ Pass both as RateProvider interface
+	rateService := services.NewRateService([]rates.RateProvider{
+		externalAPI,
+		frankfurterAPI,
+	})
+
 	r := routes.RegisterRoutes(controllers.ConvertCurrency(rateService))
-
-	// port := ":8080"
 
 	log.Println("📌 Server running on :8080")
 	http.ListenAndServe(":8080", r)

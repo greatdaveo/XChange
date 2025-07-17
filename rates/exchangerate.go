@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-type RateProviders struct {
+type ExchangeRateAPI struct {
 	APIKey string
 }
 
-func (e *RateProviders) FetchRate(from, to string) (float64, error) {
+func (e *ExchangeRateAPI) FetchRate(from, to string) (float64, error) {
 	from = strings.ToUpper(from)
 	to = strings.ToUpper(to)
 
