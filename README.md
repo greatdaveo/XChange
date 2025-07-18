@@ -1,4 +1,4 @@
-# XChange is a real-time currency converter API built with Golang.
+# XChange is a real-time currency converter API.
 
 **XChange** is a currency conversion API built with Go. It fetches real-time exchange rates from multiple external providers and offers accurate conversion between currencies. The service is Dockerized for easy deployment and consistent environments.
 
